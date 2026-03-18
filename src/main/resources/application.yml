@@ -18,7 +18,7 @@ spring:
         - id: board-service
           uri: http://localhost:8002/
           predicates:
-            - Path=/board-service/**, /bootstrap-4.6.2-dist/**, /css/**, /images/**, /js/**, /static/**, /jquery-ui-1.13.1.custom/**, /smarteditor/**
+            - Path=/board-service/**, /community/**  # ← /community/** 추가
           filters:
             - RewritePath=/board-service/(?<segment>.*), /${segment}
 
@@ -31,4 +31,4 @@ eureka:
 
 logging:
   level:
-    com.netflix.discovery: WARN
+    __com.netflix____.discovery__: WARN
