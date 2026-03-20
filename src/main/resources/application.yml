@@ -1,4 +1,4 @@
-# MSA 버전 아님
+# MSA 버전 
 server:
   port: 8000
 
@@ -13,14 +13,14 @@ spring:
 
       routes:
         - id: user-service
-          uri: http://localhost:8001/
+          uri: lb://user-service
           predicates:
             - Path=/user-service/**, /bootstrap-4.6.2-dist/**, /css/**, /images/**, /js/**, /static/**, /jquery-ui-1.13.1.custom/**, /smarteditor/**
           filters:
             - RewritePath=/user-service/(?<segment>.*), /${segment}
 
         - id: board-service
-          uri: http://localhost:8002/
+          uri: lb://board-service
           predicates:
             - Path=/board-service/**, /community/**
           filters:
@@ -31,8 +31,9 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://discovery-service:8761/eureka/
 
 logging:
   level:
     __com.netflix____.discovery__: WARN
+    
